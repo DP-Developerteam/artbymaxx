@@ -46,10 +46,10 @@ function setupCardAnimations() {
         },
         { threshold: 0.4 }
     );
-    document.querySelectorAll(".card").forEach((card) => observer.observe(card));
+    document.querySelectorAll(".dp-card").forEach((card) => observer.observe(card));
 }
 /* scroll to top */
-function setupScrollToTop(selector = ".scrollTop") {
+function setupScrollToTop(selector = ".dp-scrollTop") {
     const triggers = document.querySelectorAll(selector);
     triggers.forEach((el) => {
         el.style.cursor = "pointer";
@@ -94,18 +94,18 @@ function setupScrollSection({
 /* gallery modal */
 /* ---------- GALLERY MODAL ---------- */
 function setupGalleryModal() {
-    const modal = document.getElementById("gallery-modal");
-    const overlay = modal.querySelector(".modal-overlay");
-    const closeBtn = modal.querySelector(".modal-close");
-    const leftArrow = modal.querySelector(".modal-arrow.left");
-    const rightArrow = modal.querySelector(".modal-arrow.right");
+    const modal = document.getElementById("dp-gallery-modal");
+    const overlay = modal.querySelector(".dp-modal-overlay");
+    const closeBtn = modal.querySelector(".dp-modal-close");
+    const leftArrow = modal.querySelector(".dp-modal-arrow.dp-left");
+    const rightArrow = modal.querySelector(".dp-modal-arrow.dp-right");
 
-    const modalImg = modal.querySelector(".modal-image");
-    const modalTitle = modal.querySelector(".modal-title");
-    const modalDesc = modal.querySelector(".modal-description");
-    const modalRef = modal.querySelector(".modal-reference");
+    const modalImg = modal.querySelector(".dp-modal-image");
+    const modalTitle = modal.querySelector(".dp-modal-title");
+    const modalDesc = modal.querySelector(".dp-modal-description");
+    const modalRef = modal.querySelector(".dp-modal-reference");
 
-    const cards = Array.from(document.querySelectorAll(".cards-container .card"));
+    const cards = Array.from(document.querySelectorAll(".dp-cards-container .dp-card"));
     let currentIndex = 0;
 
     function openModal(index) {
@@ -161,7 +161,7 @@ function setupGalleryModal() {
 /* ---------- BOOT ---------- */
 $(document).ready(function () {
     setupCardAnimations();
-    setupScrollToTop(".scrollTop");
+    setupScrollToTop(".dp-scrollTop");
     setupScrollSection();
     setupGalleryModal();
 });
