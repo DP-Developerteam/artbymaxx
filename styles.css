@@ -120,6 +120,15 @@ header .dp-header-container #google_translate_element .goog-te-gadget-simple .VI
     /* display: none; */
 }
 
+body .skiptranslate iframe {
+    top: 100px;
+}
+@media (min-width: 650px) {
+    body .skiptranslate iframe {
+        top: 65px;
+    }
+}
+
 
 /* FOOTER STYLES */
 footer {
@@ -127,6 +136,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 30px;
     height: 10rem;
     width: 100%;
     background-color: var(--color-line);
