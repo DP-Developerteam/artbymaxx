@@ -544,6 +544,7 @@ main section .dp-line-top-left {
     max-width: 80vw;
     max-height: 60vh;
     margin-bottom: 1rem;
+    object-fit: contain;
 }
 .dp-modal .dp-modal-content .dp-modal-body .dp-modal-title {
     font-size: 1.5rem;
