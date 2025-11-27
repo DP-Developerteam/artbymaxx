@@ -4,8 +4,8 @@ function createScrollEngine(duration = 600) {
     // Easing: easeInOutQuint (slower, more elegant curve)
     const ease = (t) =>
         t < 0.5
-        ? 16 * t * t * t * t * t
-        : 1 - Math.pow(-2 * t + 2, 5) / 2;
+            ? 16 * t * t * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 5) / 2;
 
     return function scrollToY(targetY, ms = duration) {
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -39,8 +39,8 @@ function setupCardAnimations() {
         (entries, obs) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                obs.unobserve(entry.target);
+                    entry.target.classList.add("visible");
+                    obs.unobserve(entry.target);
                 }
             });
         },
@@ -73,21 +73,21 @@ function setupScrollSection({
 
     document.querySelectorAll(selector).forEach((link) => {
         link.addEventListener("click", async (e) => {
-        const hash = link.getAttribute("href");
-        if (!hash || hash === "#" || !hash.startsWith("#")) return;
+            const hash = link.getAttribute("href");
+            if (!hash || hash === "#" || !hash.startsWith("#")) return;
 
-        const target = document.querySelector(hash);
-        if (!target) return;
+            const target = document.querySelector(hash);
+            if (!target) return;
 
-        e.preventDefault();
-        const y =
-            target.getBoundingClientRect().top +
-            window.pageYOffset -
-            getOffset();
-        await scrollToY(y, duration);
+            e.preventDefault();
+            const y =
+                target.getBoundingClientRect().top +
+                window.pageYOffset -
+                getOffset();
+            await scrollToY(y, duration);
 
-        target.setAttribute("tabindex", "-1");
-        target.focus({ preventScroll: true });
+            target.setAttribute("tabindex", "-1");
+            target.focus({ preventScroll: true });
         });
     });
 }
@@ -170,10 +170,55 @@ function googleTranslateElementInit() {
 }
 
 
+/* ---------- PAGINATION ---------- */
+function setupPagination() {
+    const cards = document.querySelectorAll(".dp-cards-container .dp-card");
+    const loadMoreBtn = document.getElementById("dp-load-more");
+    const itemsPerPage = 12;
+    let visibleCount = itemsPerPage;
+
+    // Initially hide cards beyond itemsPerPage
+    cards.forEach((card, index) => {
+        if (index >= itemsPerPage) {
+            card.classList.add("dp-hidden");
+        }
+    });
+
+    // Hide button if no more items
+    if (cards.length <= itemsPerPage) {
+        loadMoreBtn.classList.add("dp-hidden");
+    }
+
+    loadMoreBtn.addEventListener("click", () => {
+        let newCount = 0;
+        cards.forEach((card, index) => {
+            if (index >= visibleCount && index < visibleCount + itemsPerPage) {
+                card.classList.remove("dp-hidden");
+                // Trigger animation observer for newly revealed cards
+                // We need to re-observe them or just let the existing observer handle it if it's still active
+                // The existing observer unobserves after intersection, so we might need to re-add them if they were already observed but hidden?
+                // Actually, if they were hidden (display:none), they wouldn't intersect. Now they will.
+                // But the existing observer runs once on load. We need to make sure it observes these new ones.
+                // The existing setupCardAnimations runs on all .dp-card.
+                // If they are display:none, they have 0 dimensions and won't intersect.
+                // Once we remove dp-hidden, they will have dimensions and should trigger the observer if they are in viewport.
+                newCount++;
+            }
+        });
+
+        visibleCount += itemsPerPage;
+
+        if (visibleCount >= cards.length) {
+            loadMoreBtn.classList.add("dp-hidden");
+        }
+    });
+}
+
 /* ---------- BOOT ---------- */
 $(document).ready(function () {
     setupCardAnimations();
     setupScrollToTop(".dp-scrollTop");
     setupScrollSection();
     setupGalleryModal();
+    setupPagination();
 });
