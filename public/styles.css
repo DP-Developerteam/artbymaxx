@@ -169,31 +169,9 @@ header .dp-header-container nav ul li a:hover {
     background-color: var(--color-line);
 }
 
-header .dp-header-container #google_translate_element {
-    position: absolute;
-    right: 0;
-    bottom: -50px;
-}
 
-header .dp-header-container #google_translate_element .goog-te-gadget-simple {
-    border-radius: 20px;
-    border: none;
-    padding: 5px;
-}
 
-header .dp-header-container #google_translate_element .goog-te-gadget-simple .VIpgJd-ZVi9od-xl07Ob-lTBxed :first-child {
-    /* display: none; */
-}
 
-body .skiptranslate iframe {
-    top: 100px;
-}
-
-@media (min-width: 650px) {
-    body .skiptranslate iframe {
-        top: 65px;
-    }
-}
 
 
 /* FOOTER STYLES */
