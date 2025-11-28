@@ -63,7 +63,7 @@
             <span class="dp-circle-medium-right"></span>
             <span class="dp-circle-big-right"></span>
             <span class="dp-circle-big-left"></span>
-            <h2>Ausgewählte Kunstwerke</h2>
+            <h2>Ausgewählte<br />Kunstwerke</h2>
             <p>Eine kuratierte Sammlung aktueller Gemälde. Durchsuchen Sie die Sammlung nach Größe oder öffnen Sie ein
                 Werk, um dessen Details zu sehen.</p>
             <div class="dp-cards-container">
@@ -470,7 +470,7 @@
                 </div>
             </div>
             <div class="dp-load-more-container">
-                <button id="dp-load-more" class="dp-btn-load-more">Mehr anzeigen</button>
+                <button id="dp-load-more">Mehr anzeigen</button>
             </div>
         </section>
         <section id="about" class="dp-columns">
@@ -499,7 +499,9 @@
             <span class="dp-line-top-left"></span>
             <div class="dp-main-content">
                 <h2>Kontaktieren Sie mich</h2>
-                <form class="dp-contact-form" novalidate data-form role="form">
+                <!-- <form class="dp-contact-form" novalidate data-form role="form"> -->
+                <form class="dp-contact-form" action="https://formsubmit.co/64b2a13d2972bcfc1d198a07af317a45"
+                    method="POST" role="form">
                     <div class="dp-field">
                         <label for="name">Name</label>
                         <input id="name" name="name" type="text" autocomplete="name" required />
@@ -512,8 +514,11 @@
                         <label for="message">Nachricht</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
+                    <input type="hidden" name="_subject" value="Neue Nachricht über ArtByMaxx.com">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://artbymaxx.com/thank-you.html">
                     <button type="submit" class="dp-btn">Senden</button>
-                    <p class="dp-form-note">* Simulierter Versand zur Demonstration.</p>
+                    <p class="dp-form-note">* Accept terms and conditions.</p>
                 </form>
             </div>
             <div class="dp-secondary-content">
