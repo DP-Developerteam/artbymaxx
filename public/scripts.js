@@ -204,6 +204,25 @@ function setupPagination() {
     });
 }
 
+/* ---------- PRIVACY NOTICE ---------- */
+function initPrivacyNotice() {
+    const banner = document.getElementById('dp-cookie-banner');
+    const acceptBtn = document.getElementById('dp-accept-cookies');
+
+    // Check if user has dismissed banner in this session
+    const dismissed = sessionStorage.getItem('privacy_notice_dismissed');
+
+    if (!dismissed) {
+        banner.hidden = false;
+    }
+
+    // Store dismissal in sessionStorage (persists during browser session only)
+    acceptBtn.addEventListener('click', () => {
+        sessionStorage.setItem('privacy_notice_dismissed', 'true');
+        banner.hidden = true;
+    });
+}
+
 /* ---------- BOOT ---------- */
 $(document).ready(function () {
     setupCardAnimations();
@@ -211,4 +230,5 @@ $(document).ready(function () {
     setupScrollSection();
     setupGalleryModal();
     setupPagination();
+    initPrivacyNotice();
 });

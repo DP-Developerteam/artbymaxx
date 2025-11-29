@@ -517,24 +517,18 @@
                     <input type="hidden" name="_captcha" value="false">
                     <!-- <input type="hidden" name="_next" value="https://artbymaxx.com/thank-you.html"> -->
                     <input type="hidden" name="_next" value="https://artbymaxx.vercel.app/thank-you.html">
+                    <div class="dp-checkbox-field">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und Zuordnung für
+                            eventuelle Rückfragen dauerhaft gespeichert werden. Hinweis: Diese Einwilligung können Sie
+                            jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie eine E-Mail an
+                            hallo@artbymaxx.com senden.</label>
+                    </div>
                     <button type="submit" class="dp-btn">Senden</button>
-                    <p class="dp-form-note">* Accept terms and conditions.</p>
                 </form>
             </div>
             <div class="dp-secondary-content">
                 <h2>Information</h2>
-                <!-- <p class="dp-with-icon">
-                        <a href="https://maps.app.goo.gl/VmPYG7KF7QQxk9d9A" target="_blank"><strong>Köln</strong>, Deutschland</a>
-                        <span>
-                            <img src="assets/icons/location.svg" alt="" loading="lazy" />
-                        </span>
-                    </p> -->
-                <!-- <p class="dp-with-icon">
-                        <a href="tel:+491602719129">+49 160 27 19 129</a>
-                        <span>
-                            <img src="assets/icons/phone.svg" alt="" loading="lazy" />
-                        </span>
-                    </p> -->
                 <p class="dp-with-icon">
                     <a href="mailto:hallo@artbymaxx.com">hallo@artbymaxx.com</a>
                     <span>
@@ -542,11 +536,11 @@
                     </span>
                 </p>
                 <!-- <p class="dp-with-icon">
-                        <a href="https://instagram.com" target="_blank" rel="noreferrer">@ArtByMaxx</a>
-                        <span>
-                            <img src="assets/icons/instagram.svg" alt="" loading="lazy" />
-                        </span>
-                    </p> -->
+                    <a href="https://instagram.com" target="_blank" rel="noreferrer">@ArtByMaxx</a>
+                    <span>
+                        <img src="assets/icons/instagram.svg" alt="" loading="lazy" />
+                    </span>
+                </p> -->
             </div>
         </section>
     </main>
@@ -583,6 +577,14 @@
                 d="M12 9.414 5.707 15.707c-.39.39-1.024.39-1.414 0s-.39-1.024 0-1.414l7-7c.39-.391 1.024-.391 1.414 0l7 7c.39.39.39 1.024 0 1.414s-1.024.39-1.414 0z" />
         </svg>
     </button>
+
+    <!-- Privacy Notice Banner -->
+    <div id="dp-cookie-banner" hidden>
+        <p>Diese Website verwendet ausschließlich technisch notwendige Dienste.<br />Wir tracken Sie nicht und verwenden
+            keine Analyse-Tools.</p>
+        <a href="/datenschutz.html">Mehr erfahren</a>
+        <button id="dp-accept-cookies">Verstanden</button>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
     <script src="/scripts.js" defer></script>
