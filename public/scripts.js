@@ -164,7 +164,8 @@ function setupGalleryModal() {
 function setupPagination() {
     const cards = document.querySelectorAll(".dp-cards-container .dp-card");
     const loadMoreBtn = document.getElementById("dp-load-more");
-    const itemsPerPage = 12;
+    // const itemsPerPage = 12;
+    const itemsPerPage = 1200;
     let visibleCount = itemsPerPage;
 
     // Initially hide cards beyond itemsPerPage
@@ -260,7 +261,7 @@ function setupSizeFilter() {
         const loadMoreBtn = document.getElementById('dp-load-more');
         if (!loadMoreBtn) return;
 
-        const hiddenCount = Array.from(cards).filter(card => 
+        const hiddenCount = Array.from(cards).filter(card =>
             card.classList.contains('dp-hidden')
         ).length;
 

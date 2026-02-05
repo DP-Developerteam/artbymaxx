@@ -770,7 +770,7 @@ main section .dp-line-middle-left {
 
 /* UTILITIES */
 .dp-hidden {
-    /* display: none !important; */
+    display: none !important;
 }
 
 /* LOAD MORE BUTTON */
