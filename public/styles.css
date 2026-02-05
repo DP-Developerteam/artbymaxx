@@ -846,20 +846,6 @@ main section .dp-line-middle-left {
 
 .dp-filter-btn {
     padding: 0.5rem 1rem;
-    background-color: transparent;
-    color: var(--color-text);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    text-decoration: underline;
-    cursor: pointer;
-    border-radius: 5px;
-    white-space: nowrap;
-    transition: background-color 1s ease, color 0.3s ease;
-}
-
-.dp-filter-btn:hover,
-.dp-filter-active {
-    background-color: var(--color-line);
 }
 
 /* Card visibility with filter */
