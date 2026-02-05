@@ -66,59 +66,68 @@
             <h2>Ausgewählte<br />Kunstwerke</h2>
             <p>Eine kuratierte Sammlung aktueller Gemälde. Durchsuchen Sie die Sammlung nach Größe oder öffnen Sie ein
                 Werk, um dessen Details zu sehen.</p>
+
+            <!-- Size Filter -->
+            <div class="dp-filter-container">
+                <button class="dp-filter-btn dp-filter-active" data-filter="all">Alle</button>
+                <button class="dp-filter-btn" data-filter="small">Kleine (bis 60x60 cm)</button>
+                <button class="dp-filter-btn" data-filter="medium">Mittel (bis 80x80 cm)</button>
+                <button class="dp-filter-btn" data-filter="large">Groß (über 80x80 cm)</button>
+            </div>
+
             <div class="dp-cards-container">
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/01.01.webp" alt="Golden Wirbel" width="350" height="350" loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Goldene Wirbel</h4>
-                        <p>Strukturpaste, Acrylfarbe, Schwarz und Gold, 60 x 40 cm</p>
+                        <p>Strukturpaste, Acrylfarben, Schwarz und Gold, 60 x 40 cm</p>
                         <span>Referenz: KNST01AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/02.01.webp" alt="Sonnenexplosion" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Sonnenexplosion</h4>
-                        <p>Strukturpaste, Acrylfarbe, türkis-blau-Töne und Gold, 60 x 40 cm</p>
+                        <p>Strukturpaste, Acrylfarben, türkis-blau-Töne und Gold, 60 x 40 cm</p>
                         <span>Referenz: KNST02AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/03.01.webp" alt="Blaue Horizonte" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Blauer Horizont</h4>
-                        <p>Strukturpaste, Acrylfarbe, Farben Türkis und Gold, 60 x 40 cm</p>
+                        <p>Strukturpaste, Acrylfarben, Farben Türkis und Gold, 60 x 40 cm</p>
                         <span>Referenz: KNST03AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/04.01.webp" alt="Tiefrot" width="350" height="350" loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Tiefrot</h4>
-                        <p>Strukturpaste, Acrylfarbe, Farben Rot und Gold, 60 x 40 cm</p>
+                        <p>Strukturpaste, Acrylfarben, Farben Rot und Gold, 60 x 40 cm</p>
                         <span>Referenz: KNST04AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/05.01.webp" alt="Rote Wellen" width="350" height="350" loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Rote Wellen</h4>
-                        <p>Strukturpaste, Acrylfarbe, Farben Rot und Gold, 60 x 40 cm</p>
+                        <p>Strukturpaste, Acrylfarben, Farben Rot und Gold, 60 x 40 cm</p>
                         <span>Referenz: KNST05AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/06.01.webp" alt="Türkises Leuchten" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Türkises Leuchten</h4>
-                        <p>80 x 60 cm, Strukturpaste, Türkis und Silber, Acrylfarbe, Silberrahmen 4 cm</p>
+                        <p>80 x 60 cm, Strukturpaste, Türkis und Silber, Acrylfarben, gemalter Silberrahmen 4 cm</p>
                         <span>Referenz: KNST06AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/07.01.webp" alt="Rote Harmonie" width="350" height="350" loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Rote Harmonie</h4>
@@ -126,7 +135,7 @@
                         <span>Referenz: KNST07AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/08.01.webp" alt="Grüner Traum" width="350" height="350" loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Grüner Traum</h4>
@@ -134,7 +143,7 @@
                         <span>Referenz: KNST08AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/09.01.webp" alt="Goldenes Quadrat" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -143,7 +152,7 @@
                         <span>Referenz: KNST09AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/10.01.webp" alt="Feuerblüte" width="350" height="350" loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Feuerblüte</h4>
@@ -151,7 +160,7 @@
                         <span>Referenz: KNST10AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="xlarge">
                     <img src="/assets/images/11.01.webp" alt="Herbstmosaik" width="350" height="350" loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Herbstmosaik</h4>
@@ -160,7 +169,7 @@
                         <span>Referenz: KNST11AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/12.01.webp" alt="Erdtöne" width="350" height="350" loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Erdtöne</h4>
@@ -169,7 +178,7 @@
                         <span>Referenz: KNST12AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="xlarge">
                     <img src="/assets/images/13.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -179,7 +188,7 @@
                         <span>Referenz: KNST13AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/14.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -189,16 +198,16 @@
                         <span>Referenz: KNST14AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/15.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Goldgrüner Traum</h4>
-                        <p>80 x 60 cm, Acrylfarben, verschiedene Grüntöne und Gold, dezente Strukturpaste</p>
+                        <p>80 x 60 cm, Acrylfarben, verschiedene Grüntöne und Gold, Leichte Strukturpaste</p>
                         <span>Referenz: KNST15AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/16.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -207,7 +216,7 @@
                         <span>Referenz: KNST16AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/17.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -217,17 +226,17 @@
                         <span>Referenz: KNST17AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/18.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
-                        <h4>Roter Rahmen</h4>
+                        <h4>Mohnblume</h4>
                         <p>70 x 100 cm, 70 x 100 cm, Acrylfarben, kräftige Rottöne, dezente Struktur, handbemalter
                             Rahmen in Rot</p>
                         <span>Referenz: KNST18AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/19.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -236,7 +245,7 @@
                         <span>Referenz: KNST19AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/20.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -246,7 +255,7 @@
                         <span>Referenz: KNST20AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/21.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -255,7 +264,7 @@
                         <span>Referenz: KNST21AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/22.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -265,7 +274,7 @@
                         <span>Referenz: KNST22AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/23.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -274,7 +283,7 @@
                         <span>Referenz: KNST23AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/24.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -283,7 +292,7 @@
                         <span>Referenz: KNST24AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/25.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -293,7 +302,7 @@
                         <span>Referenz: KNST25AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/26.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -302,7 +311,7 @@
                         <span>Referenz: KNST26AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/27.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -312,16 +321,16 @@
                         <span>Referenz: KNST27AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/28.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
                         <h4>Grünes Leuchten</h4>
-                        <p>60 x 40 cm, Acrylfarben, verschiedene Grüntöne und Gold, leichte Strukturpaste</p>
+                        <p>60 x 40 cm, Acrylfarben, verschiedene Grüntöne und Blau, leichte Strukturpaste</p>
                         <span>Referenz: KNST28AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/29.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -330,7 +339,7 @@
                         <span>Referenz: KNST29AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/30.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -340,7 +349,7 @@
                         <span>Referenz: KNST30AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/31.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -349,7 +358,7 @@
                         <span>Referenz: KNST31AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/32.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -358,7 +367,7 @@
                         <span>Referenz: KNST32AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/33.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -368,7 +377,7 @@
                         <span>Referenz: KNST33AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/34.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -378,7 +387,7 @@
                         <span>Referenz: KNST34AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/35.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -387,7 +396,7 @@
                         <span>Referenz: KNST35AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/36.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -396,7 +405,7 @@
                         <span>Referenz: KNST36AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/37.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -405,7 +414,7 @@
                         <span>Referenz: KNST37AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/38.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -414,7 +423,7 @@
                         <span>Referenz: KNST38AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="large">
                     <img src="/assets/images/39.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -423,7 +432,7 @@
                         <span>Referenz: KNST39AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/40.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -432,7 +441,7 @@
                         <span>Referenz: KNST40AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/41.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -441,7 +450,7 @@
                         <span>Referenz: KNST41AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="medium">
                     <img src="/assets/images/42.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -450,7 +459,7 @@
                         <span>Referenz: KNST42AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/43.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -459,7 +468,7 @@
                         <span>Referenz: KNST43AA25</span>
                     </div>
                 </div>
-                <div class="dp-card">
+                <div class="dp-card" data-size="small">
                     <img src="/assets/images/44.01.webp" alt="Brennender Sonnenuntergang" width="350" height="350"
                         loading="lazy" />
                     <div class="dp-card-content">
@@ -479,15 +488,12 @@
             <span class="dp-rectangle-accent-right"></span>
             <div class="dp-main-content">
                 <h2>Über den Künstler</h2>
-                <p>Sein Werk ist geprägt von der Auseinandersetzung mit Farbe, Struktur und Erinnerung. Jede Komposition
-                    entsteht aus dem Dialog zwischen spontaner Intuition und sorgfältiger handwerklicher Ausführung.</p>
-                <p>Er verbindet er klassische Ausdrucksformen mit einer zeitgenössischen Bildsprache. Seine Bilder
-                    spielen mit intensiven Farbschichten, metallischen Akzenten und klaren Formen, die sowohl Ruhe als
-                    auch Dynamik ausstrahlen. Dabei greift er Themen wie Natur, Vergänglichkeit und Emotion auf und
-                    überführt sie in abstrakte Kompositionen.</p>
-                <p>Maxx lädt Betrachterinnen und Betrachter dazu ein, in die Tiefe seiner Werke einzutauchen und eigene
-                    Assoziationen zu entwickeln. Jedes Gemälde ist ein einzigartiges Erlebnis - ein Moment, der auf
-                    Leinwand festgehalten wurde und über die Grenzen des Sichtbaren hinausweist.</p>
+                <p>Mein Werk entsteht aus der Liebe zu Farben und Struktur.</p>
+                <p>Jede Komposition entsteht aus dem Dialog zwischen Intuition und Kreativität.</p>
+                <p>Ich liebe es, zu zeichnen und zu malen und begeistere mich seit meiner Kindheit für Zeichnen, Malen, Farben und Struktur.</p>
+                <p>Zeichnen und Malen bedeutet für mich, mich auszudrücken und meine Kreativität zu leben.</p>
+                <p>Jedes Bild spiegelt meine Leidenschaft, immer wieder Neues auszuprobieren und meine Welt und ihre Schönheit auszurücken und zu beschreiben.</p>
+                <p>Malen und Zeichnen fordert und fördert mich immer wieder neu, in mich hineinzuhorchen, was gerade dargestellt und in den Ausdruck gebracht werden will.</p>
             </div>
             <figure class="dp-secondary-content">
                 <img src="assets/images/full-shot-man-painting-canvas.webp"

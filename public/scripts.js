@@ -204,6 +204,101 @@ function setupPagination() {
     });
 }
 
+/* ---------- SIZE FILTER ---------- */
+function setupSizeFilter() {
+    const filterContainer = document.querySelector('.dp-filter-container');
+    const filterBtns = document.querySelectorAll('.dp-filter-btn');
+    const cardsContainer = document.querySelector('.dp-cards-container');
+    const cards = cardsContainer.querySelectorAll('.dp-card');
+
+    // Size filter mapping
+    const sizeRanges = {
+        small: (size) => ['40x40', '50x50', '50x70', '60x40', '70x50'].some(s => size.includes(s)),
+        medium: (size) => ['70x70', '80x60', '80x80'].some(s => size.includes(s)),
+        large: (size) => ['70x100', '80x100', '100x70', '100x80'].some(s => size.includes(s)),
+        xlarge: (size) => ['100x100', '120x120'].some(s => size.includes(s))
+    };
+
+    // Function to extract size from card description
+    function getCardSize(card) {
+        const desc = card.querySelector('.dp-card-content p')?.textContent || '';
+        const match = desc.match(/(\d+)\s*x\s*(\d+)\s*cm/);
+        return match ? `${match[1]}x${match[2]}` : '';
+    }
+
+    // Function to filter cards
+    function filterCards(selectedFilter) {
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+            const cardSize = card.getAttribute('data-size');
+            let shouldShow = false;
+
+            if (selectedFilter === 'all') {
+                shouldShow = true;
+            } else {
+                shouldShow = cardSize === selectedFilter;
+            }
+
+            if (shouldShow) {
+                card.classList.remove('dp-hidden');
+                visibleCount++;
+            } else {
+                card.classList.add('dp-hidden');
+            }
+        });
+
+        // Update load more button visibility
+        updateLoadMoreButton(visibleCount);
+
+        // Store filter preference
+        sessionStorage.setItem('size_filter', selectedFilter);
+    }
+
+    // Function to update load more button
+    function updateLoadMoreButton(visibleCount) {
+        const loadMoreBtn = document.getElementById('dp-load-more');
+        if (!loadMoreBtn) return;
+
+        const hiddenCount = Array.from(cards).filter(card => 
+            card.classList.contains('dp-hidden')
+        ).length;
+
+        // Hide button if all visible cards are shown or no cards are visible
+        if (hiddenCount === 0 || visibleCount === 0) {
+            loadMoreBtn.classList.add('dp-hidden');
+        } else {
+            loadMoreBtn.classList.remove('dp-hidden');
+        }
+    }
+
+    // Add click listeners to filter buttons
+    filterBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('dp-filter-active'));
+
+            // Add active class to clicked button
+            btn.classList.add('dp-filter-active');
+
+            // Get filter value and apply filter
+            const filterValue = btn.getAttribute('data-filter');
+            filterCards(filterValue);
+        });
+    });
+
+    // Restore previous filter if exists
+    const savedFilter = sessionStorage.getItem('size_filter');
+    if (savedFilter) {
+        const savedBtn = document.querySelector(`.dp-filter-btn[data-filter="${savedFilter}"]`);
+        if (savedBtn) {
+            savedBtn.click();
+        }
+    }
+}
+
 /* ---------- PRIVACY NOTICE ---------- */
 function initPrivacyNotice() {
     const banner = document.getElementById('dp-cookie-banner');
@@ -229,6 +324,7 @@ $(document).ready(function () {
     setupScrollToTop(".dp-scrollTop");
     setupScrollSection();
     setupGalleryModal();
+    setupSizeFilter();
     setupPagination();
     initPrivacyNotice();
 });

@@ -840,3 +840,56 @@ main section .dp-line-middle-left {
     background-color: var(--color-text);
     color: var(--color-bg);
 }
+
+/* Size Filter Styles */
+.dp-filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0 3rem 0;
+    padding: 0 1rem;
+}
+
+.dp-filter-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--color-accent);
+    background-color: transparent;
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.dp-filter-btn:hover {
+    background-color: var(--color-accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.dp-filter-active {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+.dp-filter-active:hover {
+    background-color: var(--color-accent);
+    color: white;
+}
+
+/* Card visibility with filter */
+.dp-card {
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto;
+}
+
+.dp-card.dp-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
