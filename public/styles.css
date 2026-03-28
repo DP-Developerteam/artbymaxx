@@ -116,6 +116,16 @@ button:hover {
     text-decoration: underline;
 }
 
+.lang-wrapper
+{
+    display: inline-flex;
+    gap: 10px;
+}
+.lang-wrapper .dp-lang-switcher
+{
+    padding: 0.6rem;
+}
+
 /* HEADER STYLES */
 header {
     position: fixed;
