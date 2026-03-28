@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Title & SEO -->
-    <title>Impressum - Art by Maxx</title>
+    <title id="page-title">Impressum - Art by Maxx</title>
     <meta name="robots" content="noindex, nofollow" />
 
     <!-- Favicons -->
@@ -31,9 +31,13 @@
 
             <nav role="navigation">
                 <ul>
-                    <li><a href="/index.html#exhibition">Exhibition</a></li>
-                    <li><a href="/index.html#about">Über Maxx</a></li>
-                    <li><a href="/index.html#contact">Kontakt</a></li>
+                    <li><a href="/index.html#exhibition" data-i18n="navExhibition">Exhibition</a></li>
+                    <li><a href="/index.html#about" data-i18n="navAbout">Über Maxx</a></li>
+                    <li><a href="/index.html#contact" data-i18n="navContact">Kontakt</a></li>
+                    <li>
+                        <button class="dp-lang-switcher" data-lang="de">DE</button> |
+                        <button class="dp-lang-switcher" data-lang="en">EN</button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -41,10 +45,10 @@
 
     <main role="main">
         <section style="min-height: calc(100vh - 290px);">
-            <h2>Impressum</h2>
+            <h2 data-i18n="impressumTitle">Impressum</h2>
 
-            <h3>Verantwortlich gemäß §5 DDG:</h3>
-            <p>
+            <h3 data-i18n="responsibleTitle">Verantwortlich gemäß §5 DDG:</h3>
+            <p data-i18n="responsibleContent">
                 <strong>Art by Maxx - Einzelunternehmen</strong><br>
                 Inhaberin: Astrid Piehler<br>
                 Zum Tilmeshof 61<br>
@@ -52,39 +56,42 @@
                 Deutschland
             </p>
 
-            <h3>Kontakt:</h3>
-            <p>
-                E-Mail: <a href="mailto:hallo@artbymaxx.com">hallo@artbymaxx.com</a><br>
+            <h3 data-i18n="contactTitle">Kontakt:</h3>
+            <p data-i18n="contactContent">
+                E-Mail: <a href="mailto:info@artbymaxx.com">info@artbymaxx.com</a><br>
                 Telefon: +49 0221 / 98 74 73 64
             </p>
 
-            <h3>Umsatzsteuer-ID:</h3>
-            <p>Kleinunternehmer gemäß §19 UStG - Umsatzsteuer wird nicht erhoben.</p>
+            <h3 data-i18n="vatTitle">Umsatzsteuer-ID:</h3>
+            <p data-i18n="vatContent">Kleinunternehmer gemäß §19 UStG - Umsatzsteuer wird nicht erhoben.</p>
 
-            <h3>EU-Streitschlichtung</h3>
-            <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a
-                    href="https://ec.europa.eu/consumers/odr/" target="_blank"
-                    rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.<br> Unsere E-Mail-Adresse finden
-                Sie oben im Impressum.</p>
+            <h3 data-i18n="euDisputeTitle">EU-Streitschlichtung</h3>
+            <p data-i18n="euDisputeContent">
+                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+                <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">
+                    https://ec.europa.eu/consumers/odr/
+                </a>.<br>
+                Unsere E-Mail-Adresse finden Sie oben im Impressum.
+            </p>
 
-            <h3>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h3>
-            <p>Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer
-                Verbraucherschlichtungsstelle teilzunehmen.</p>
+            <h3 data-i18n="consumerDisputeTitle">Verbraucherstreitbeilegung / Universalschlichtungsstelle</h3>
+            <p data-i18n="consumerDisputeContent">
+                Wir sind nicht verpflichtet und nicht bereit, an einem Streitbeilegungsverfahren vor einer
+                Verbraucherschlichtungsstelle teilzunehmen.
+            </p>
         </section>
     </main>
 
     <footer role="contentinfo">
         <p>
-            <a href="/impressum.html">Impressum</a> |
-            <a href="/datenschutz.html">Datenschutz&shy;erklärung</a>
+            <a href="/impressum.html" data-i18n="navImpressum">Impressum</a> |
+            <a href="/datenschutz.html" data-i18n="navPrivacy">Datenschutzerklärung</a>
         </p>
-        <p>&copy; 2025 Art by Maxx. All rights reserved.</p>
+        <p>&copy; 2026 Art by Maxx. <span data-i18n="copyright">All rights reserved.</span></p>
     </footer>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
-    <script src="/scripts.js" defer></script>
-
+    <script src="/scripts.js" type="module" defer></script>
 </body>
 
 </html>
