@@ -240,7 +240,7 @@ main section {
 }
 
 main section:first-child {
-    margin-top: 7rem;
+    margin-top: 8rem;
 }
 
 @media (min-width: 650px) {
