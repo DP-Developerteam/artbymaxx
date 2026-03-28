@@ -1,0 +1,33 @@
+{
+    "siteTitle": "Art by Maxx",
+    "navExhibition": "Exhibition",
+    "navAbout": "About Maxx",
+    "navContact": "Contact",
+    "exhibitionTitle": "Selected<br />Artworks",
+    "exhibitionDescription": "A curated collection of current paintings. Browse the collection by size or open a piece to see its details.",
+    "filterAll": "All",
+    "filterSmall": "Small (up to 60x60 cm)",
+    "filterMedium": "Medium (up to 80x80 cm)",
+    "filterLarge": "Large (over 80x80 cm)",
+    "loadMore": "Show more",
+    "aboutTitle": "About the Artist",
+    "aboutText": [
+        "My work is born from a love of color and structure.",
+        "Each composition emerges from a dialogue between intuition and creativity.",
+        "I have loved drawing and painting since childhood, fascinated by colors and textures.",
+        "Drawing and painting for me means expressing myself and living my creativity.",
+        "Each painting reflects my passion for constantly trying new things and expressing my world and its beauty.",
+        "Painting and drawing continually challenge me to listen within and discover what wants to be represented and expressed."
+    ],
+    "contactTitle": "Contact Me",
+    "formName": "Name",
+    "formEmail": "Email",
+    "formMessage": "Message",
+    "formConsent": "I consent to my data being stored for contact purposes and for any follow-up questions. Note: You can revoke this consent at any time with future effect by sending an email to hallo@artbymaxx.com.",
+    "formSubmit": "Send",
+    "infoTitle": "Information",
+    "copyright": "All rights reserved.",
+    "cookieMessage": "This website uses only technically necessary services. We do not track you and do not use any analytics tools.",
+    "cookieLearnMore": "Learn more",
+    "cookieAccept": "Got it"
+}

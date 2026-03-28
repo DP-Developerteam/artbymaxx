@@ -1,0 +1,33 @@
+{
+    "siteTitle": "Art by Maxx",
+    "navExhibition": "Exhibition",
+    "navAbout": "Über Maxx",
+    "navContact": "Kontakt",
+    "exhibitionTitle": "Ausgewählte<br />Kunstwerke",
+    "exhibitionDescription": "Eine kuratierte Sammlung aktueller Gemälde. Durchsuchen Sie die Sammlung nach Größe oder öffnen Sie ein Werk, um dessen Details zu sehen.",
+    "filterAll": "Alle",
+    "filterSmall": "Kleine (bis 60x60 cm)",
+    "filterMedium": "Mittel (bis 80x80 cm)",
+    "filterLarge": "Groß (über 80x80 cm)",
+    "loadMore": "Mehr anzeigen",
+    "aboutTitle": "Über den Künstler",
+    "aboutText": [
+        "Mein Werk entsteht aus der Liebe zu Farben und Struktur.",
+        "Jede Komposition entsteht aus dem Dialog zwischen Intuition und Kreativität.",
+        "Ich liebe es, zu zeichnen und zu malen und begeistere mich seit meiner Kindheit für Zeichnen, Malen, Farben und Struktur.",
+        "Zeichnen und Malen bedeutet für mich, mich auszudrücken und meine Kreativität zu leben.",
+        "Jedes Bild spiegelt meine Leidenschaft, immer wieder Neues auszuprobieren und meine Welt und ihre Schönheit auszurücken und zu beschreiben.",
+        "Malen und Zeichnen fordert und fördert mich immer wieder neu, in mich hineinzuhorchen, was gerade dargestellt und in den Ausdruck gebracht werden will."
+    ],
+    "contactTitle": "Kontaktieren Sie mich",
+    "formName": "Name",
+    "formEmail": "Email",
+    "formMessage": "Nachricht",
+    "formConsent": "Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und Zuordnung für eventuelle Rückfragen dauerhaft gespeichert werden. Hinweis: Diese Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie eine E-Mail an hallo@artbymaxx.com senden.",
+    "formSubmit": "Senden",
+    "infoTitle": "Information",
+    "copyright": "All rights reserved.",
+    "cookieMessage": "Diese Website verwendet ausschließlich technisch notwendige Dienste. Wir tracken Sie nicht und verwenden keine Analyse-Tools.",
+    "cookieLearnMore": "Mehr erfahren",
+    "cookieAccept": "Verstanden"
+}

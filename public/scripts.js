@@ -1,7 +1,195 @@
-/* ---------- UTILS ---------- */
-/* smooth scroll engine */
+// App State
+let artworks = [];
+let currentLang = localStorage.getItem('language') || 'de';
+let currentFilter = 'all';
+let visibleCount = 12;
+
+// ========== DATA LOADING ==========
+async function loadData() {
+    try {
+        const [artworksRes, translationsRes] = await Promise.all([
+            fetch('/data/artworks.json'),
+            fetch(`/data/translations/${currentLang}.json`)
+        ]);
+
+        artworks = (await artworksRes.json()).artworks.sort((a, b) => a.order - b.order);
+        const translations = await translationsRes.json();
+
+        return { artworks, translations };
+    } catch (error) {
+        console.error('Error loading data:', error);
+        return { artworks: [], translations: {} };
+    }
+}
+
+// ========== RENDER FUNCTIONS ==========
+function renderArtworks() {
+    const container = document.getElementById('artworks-container');
+    if (!container) return;
+
+    const filtered = currentFilter === 'all'
+        ? artworks
+        : artworks.filter(artwork => artwork.size === currentFilter);
+
+    const visible = filtered.slice(0, visibleCount);
+    const remaining = filtered.length - visibleCount;
+
+    container.innerHTML = visible.map(artwork => `
+        <div class="dp-card" data-size="${artwork.size}" data-id="${artwork.id}">
+            <img src="${artwork.image}" alt="${currentLang === 'de' ? artwork.title : artwork.titleEn}" width="350" height="350" loading="lazy" />
+            <div class="dp-card-content">
+                <h4>${currentLang === 'de' ? artwork.title : artwork.titleEn}</h4>
+                <p>${currentLang === 'de' ? artwork.description : artwork.descriptionEn}</p>
+                <span>Referenz: ${artwork.reference}</span>
+            </div>
+        </div>
+    `).join('');
+
+    const loadMoreBtn = document.getElementById('dp-load-more');
+    if (loadMoreBtn) {
+        loadMoreBtn.style.display = remaining > 0 ? 'block' : 'none';
+    }
+
+    attachModalListeners();
+    setupCardAnimations(); // Re-run animations for new cards
+}
+
+function applyTranslations(translations) {
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.dataset.i18n;
+        if (translations[key]) {
+            if (element.tagName === 'INPUT' && element.type === 'submit') {
+                element.value = translations[key];
+            } else if (element.tagName === 'BUTTON') {
+                element.textContent = translations[key];
+            } else {
+                element.innerHTML = translations[key];
+            }
+        }
+    });
+
+    if (translations.aboutText) {
+        const container = document.getElementById('about-text-container');
+        if (container) {
+            container.innerHTML = translations.aboutText.map(text => `<p>${text}</p>`).join('');
+        }
+    }
+
+    document.documentElement.lang = currentLang === 'de' ? 'de' : 'en';
+}
+
+// ========== GALLERY MODAL ==========
+function attachModalListeners() {
+    document.querySelectorAll('.dp-card').forEach(card => {
+        card.removeEventListener('click', handleCardClick);
+        card.addEventListener('click', handleCardClick);
+    });
+}
+
+function handleCardClick(e) {
+    const card = e.currentTarget;
+    const id = card.dataset.id;
+    const artwork = artworks.find(a => a.id === id);
+    if (artwork) openModal(artwork);
+}
+
+function openModal(artwork) {
+    const modal = document.getElementById('dp-gallery-modal');
+    const img = modal.querySelector('.dp-modal-image');
+    const title = modal.querySelector('.dp-modal-title');
+    const desc = modal.querySelector('.dp-modal-description');
+    const ref = modal.querySelector('.dp-modal-reference');
+
+    img.src = artwork.image;
+    img.alt = currentLang === 'de' ? artwork.title : artwork.titleEn;
+    title.textContent = currentLang === 'de' ? artwork.title : artwork.titleEn;
+    desc.textContent = currentLang === 'de' ? artwork.description : artwork.descriptionEn;
+    ref.textContent = `Referenz: ${artwork.reference}`;
+
+    modal.hidden = false;
+}
+
+function setupGalleryModal() {
+    const modal = document.getElementById('dp-gallery-modal');
+    if (!modal) return;
+
+    const overlay = modal.querySelector('.dp-modal-overlay');
+    const closeBtn = modal.querySelector('.dp-modal-close');
+    const leftArrow = modal.querySelector('.dp-modal-arrow.dp-left');
+    const rightArrow = modal.querySelector('.dp-modal-arrow.dp-right');
+    const modalImg = modal.querySelector('.dp-modal-image');
+    const modalTitle = modal.querySelector('.dp-modal-title');
+    const modalDesc = modal.querySelector('.dp-modal-description');
+    const modalRef = modal.querySelector('.dp-modal-reference');
+
+    let currentIndex = 0;
+    let currentArtworks = [];
+
+    function updateModal(index) {
+        const artwork = currentArtworks[index];
+        if (!artwork) return;
+
+        modalImg.src = artwork.image;
+        modalImg.alt = currentLang === 'de' ? artwork.title : artwork.titleEn;
+        modalTitle.textContent = currentLang === 'de' ? artwork.title : artwork.titleEn;
+        modalDesc.textContent = currentLang === 'de' ? artwork.description : artwork.descriptionEn;
+        modalRef.textContent = `Referenz: ${artwork.reference}`;
+    }
+
+    function getCurrentArtworks() {
+        const container = document.getElementById('artworks-container');
+        if (!container) return [];
+
+        const cards = container.querySelectorAll('.dp-card:not(.dp-hidden)');
+        const ids = Array.from(cards).map(card => card.dataset.id);
+        return artworks.filter(a => ids.includes(a.id));
+    }
+
+    function openModalFromCard(card) {
+        currentArtworks = getCurrentArtworks();
+        const id = card.dataset.id;
+        currentIndex = currentArtworks.findIndex(a => a.id === id);
+        if (currentIndex !== -1) {
+            updateModal(currentIndex);
+            modal.hidden = false;
+        }
+    }
+
+    function showPrev() {
+        if (currentArtworks.length === 0) return;
+        currentIndex = (currentIndex - 1 + currentArtworks.length) % currentArtworks.length;
+        updateModal(currentIndex);
+    }
+
+    function showNext() {
+        if (currentArtworks.length === 0) return;
+        currentIndex = (currentIndex + 1) % currentArtworks.length;
+        updateModal(currentIndex);
+    }
+
+    function closeModal() {
+        modal.hidden = true;
+    }
+
+    document.querySelectorAll('.dp-card').forEach(card => {
+        card.addEventListener('click', () => openModalFromCard(card));
+    });
+
+    overlay?.addEventListener('click', closeModal);
+    closeBtn?.addEventListener('click', closeModal);
+    leftArrow?.addEventListener('click', showPrev);
+    rightArrow?.addEventListener('click', showNext);
+
+    document.addEventListener('keydown', (e) => {
+        if (modal.hidden) return;
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showPrev();
+        if (e.key === 'ArrowRight') showNext();
+    });
+}
+
+// ========== SMOOTH SCROLL ENGINE ==========
 function createScrollEngine(duration = 600) {
-    // Easing: easeInOutQuint (slower, more elegant curve)
     const ease = (t) =>
         t < 0.5
             ? 16 * t * t * t * t * t
@@ -31,24 +219,7 @@ function createScrollEngine(duration = 600) {
 }
 const scrollToY = createScrollEngine(600);
 
-
-/* ---------- FEATURES ---------- */
-/* cards animations */
-function setupCardAnimations() {
-    const observer = new IntersectionObserver(
-        (entries, obs) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    obs.unobserve(entry.target);
-                }
-            });
-        },
-        { threshold: 0.4 }
-    );
-    document.querySelectorAll(".dp-card").forEach((card) => observer.observe(card));
-}
-/* scroll to top */
+// ========== SCROLL FUNCTIONS ==========
 function setupScrollToTop(selector = ".dp-scrollTop") {
     const triggers = document.querySelectorAll(selector);
     triggers.forEach((el) => {
@@ -59,7 +230,7 @@ function setupScrollToTop(selector = ".dp-scrollTop") {
         });
     });
 }
-/* scroll to section */
+
 function setupScrollSection({
     selector = 'nav a[href^="#"], a[href^="#"]',
     headerSelector = "header",
@@ -91,241 +262,105 @@ function setupScrollSection({
         });
     });
 }
-/* gallery modal */
-/* ---------- GALLERY MODAL ---------- */
-function setupGalleryModal() {
-    const modal = document.getElementById("dp-gallery-modal");
-    const overlay = modal.querySelector(".dp-modal-overlay");
-    const closeBtn = modal.querySelector(".dp-modal-close");
-    const leftArrow = modal.querySelector(".dp-modal-arrow.dp-left");
-    const rightArrow = modal.querySelector(".dp-modal-arrow.dp-right");
 
-    const modalImg = modal.querySelector(".dp-modal-image");
-    const modalTitle = modal.querySelector(".dp-modal-title");
-    const modalDesc = modal.querySelector(".dp-modal-description");
-    const modalRef = modal.querySelector(".dp-modal-reference");
-
-    const cards = Array.from(document.querySelectorAll(".dp-cards-container .dp-card"));
-    let currentIndex = 0;
-
-    function openModal(index) {
-        currentIndex = index;
-        const card = cards[currentIndex];
-        const img = card.querySelector("img");
-        const title = card.querySelector("h4");
-        const desc = card.querySelector("p");
-        const ref = card.querySelector("span");
-
-        modalImg.src = img.src;
-        modalImg.alt = title.textContent || "Artwork";
-        modalTitle.textContent = title.textContent;
-        modalDesc.textContent = desc ? desc.textContent : "";
-        modalRef.textContent = ref ? ref.textContent : "";
-
-        modal.removeAttribute("hidden");
-    }
-
-    function closeModal() {
-        modal.setAttribute("hidden", true);
-    }
-
-    function showPrev() {
-        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-        openModal(currentIndex);
-    }
-
-    function showNext() {
-        currentIndex = (currentIndex + 1) % cards.length;
-        openModal(currentIndex);
-    }
-
-    // Listeners
-    cards.forEach((card, index) => {
-        card.addEventListener("click", () => openModal(index));
-    });
-    overlay.addEventListener("click", closeModal);
-    closeBtn.addEventListener("click", closeModal);
-    leftArrow.addEventListener("click", showPrev);
-    rightArrow.addEventListener("click", showNext);
-
-    // Escape key closes modal
-    document.addEventListener("keydown", (e) => {
-        if (modal.hasAttribute("hidden")) return;
-        if (e.key === "Escape") closeModal();
-        if (e.key === "ArrowLeft") showPrev();
-        if (e.key === "ArrowRight") showNext();
-    });
+// ========== CARD ANIMATIONS ==========
+function setupCardAnimations() {
+    const observer = new IntersectionObserver(
+        (entries, obs) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    obs.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.4 }
+    );
+    document.querySelectorAll(".dp-card").forEach((card) => observer.observe(card));
 }
 
-
-
-
-/* ---------- PAGINATION ---------- */
-function setupPagination() {
-    const cards = document.querySelectorAll(".dp-cards-container .dp-card");
-    const loadMoreBtn = document.getElementById("dp-load-more");
-    // const itemsPerPage = 12;
-    const itemsPerPage = 1200;
-    let visibleCount = itemsPerPage;
-
-    // Initially hide cards beyond itemsPerPage
-    cards.forEach((card, index) => {
-        if (index >= itemsPerPage) {
-            card.classList.add("dp-hidden");
-        }
-    });
-
-    // Hide button if no more items
-    if (cards.length <= itemsPerPage) {
-        loadMoreBtn.classList.add("dp-hidden");
-    }
-
-    loadMoreBtn.addEventListener("click", () => {
-        let newCount = 0;
-        cards.forEach((card, index) => {
-            if (index >= visibleCount && index < visibleCount + itemsPerPage) {
-                card.classList.remove("dp-hidden");
-                // Trigger animation observer for newly revealed cards
-                // We need to re-observe them or just let the existing observer handle it if it's still active
-                // The existing observer unobserves after intersection, so we might need to re-add them if they were already observed but hidden?
-                // Actually, if they were hidden (display:none), they wouldn't intersect. Now they will.
-                // But the existing observer runs once on load. We need to make sure it observes these new ones.
-                // The existing setupCardAnimations runs on all .dp-card.
-                // If they are display:none, they have 0 dimensions and won't intersect.
-                // Once we remove dp-hidden, they will have dimensions and should trigger the observer if they are in viewport.
-                newCount++;
-            }
-        });
-
-        visibleCount += itemsPerPage;
-
-        if (visibleCount >= cards.length) {
-            loadMoreBtn.classList.add("dp-hidden");
-        }
-    });
-}
-
-/* ---------- SIZE FILTER ---------- */
-function setupSizeFilter() {
-    const filterContainer = document.querySelector('.dp-filter-container');
-    const filterBtns = document.querySelectorAll('.dp-filter-btn');
-    const cardsContainer = document.querySelector('.dp-cards-container');
-    const cards = cardsContainer.querySelectorAll('.dp-card');
-
-    // Size filter mapping
-    const sizeRanges = {
-        small: (size) => ['40x40', '50x50', '50x70', '60x40', '70x50'].some(s => size.includes(s)),
-        medium: (size) => ['70x70', '80x60', '80x80'].some(s => size.includes(s)),
-        large: (size) => ['70x100', '80x100', '100x70', '100x80'].some(s => size.includes(s)),
-        xlarge: (size) => ['100x100', '120x120'].some(s => size.includes(s))
-    };
-
-    // Function to extract size from card description
-    function getCardSize(card) {
-        const desc = card.querySelector('.dp-card-content p')?.textContent || '';
-        const match = desc.match(/(\d+)\s*x\s*(\d+)\s*cm/);
-        return match ? `${match[1]}x${match[2]}` : '';
-    }
-
-    // Function to filter cards
-    function filterCards(selectedFilter) {
-        let visibleCount = 0;
-
-        cards.forEach((card) => {
-            const cardSize = card.getAttribute('data-size');
-            let shouldShow = false;
-
-            if (selectedFilter === 'all') {
-                shouldShow = true;
-            } else {
-                shouldShow = cardSize === selectedFilter;
-            }
-
-            if (shouldShow) {
-                card.classList.remove('dp-hidden');
-                visibleCount++;
-            } else {
-                card.classList.add('dp-hidden');
-            }
-        });
-
-        // Update load more button visibility
-        updateLoadMoreButton(visibleCount);
-
-        // Store filter preference
-        sessionStorage.setItem('size_filter', selectedFilter);
-    }
-
-    // Function to update load more button
-    function updateLoadMoreButton(visibleCount) {
-        const loadMoreBtn = document.getElementById('dp-load-more');
-        if (!loadMoreBtn) return;
-
-        const hiddenCount = Array.from(cards).filter(card =>
-            card.classList.contains('dp-hidden')
-        ).length;
-
-        // Hide button if all visible cards are shown or no cards are visible
-        if (hiddenCount === 0 || visibleCount === 0) {
-            loadMoreBtn.classList.add('dp-hidden');
-        } else {
-            loadMoreBtn.classList.remove('dp-hidden');
-        }
-    }
-
-    // Add click listeners to filter buttons
-    filterBtns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            // Remove active class from all buttons
-            filterBtns.forEach(b => b.classList.remove('dp-filter-active'));
-
-            // Add active class to clicked button
+// ========== FILTERS ==========
+function initFilters() {
+    document.querySelectorAll('.dp-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.dp-filter-btn').forEach(b => b.classList.remove('dp-filter-active'));
             btn.classList.add('dp-filter-active');
-
-            // Get filter value and apply filter
-            const filterValue = btn.getAttribute('data-filter');
-            filterCards(filterValue);
+            currentFilter = btn.dataset.filter;
+            visibleCount = 12;
+            renderArtworks();
         });
     });
+}
 
-    // Restore previous filter if exists
-    const savedFilter = sessionStorage.getItem('size_filter');
-    if (savedFilter) {
-        const savedBtn = document.querySelector(`.dp-filter-btn[data-filter="${savedFilter}"]`);
-        if (savedBtn) {
-            savedBtn.click();
-        }
+// ========== LOAD MORE ==========
+function initLoadMore() {
+    const loadMoreBtn = document.getElementById('dp-load-more');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            visibleCount += 12;
+            renderArtworks();
+        });
     }
 }
 
-/* ---------- PRIVACY NOTICE ---------- */
+// ========== LANGUAGE SWITCHER ==========
+function initLanguageSwitcher() {
+    document.querySelectorAll('.dp-lang-switcher').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            currentLang = btn.dataset.lang;
+            localStorage.setItem('language', currentLang);
+
+            const { translations } = await loadData();
+            applyTranslations(translations);
+            renderArtworks();
+        });
+    });
+}
+
+// ========== CONTACT FORM ==========
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (form) {
+        form.action = 'https://formsubmit.co/1ef9999ba107cefe3d6c8f53a3108f36';
+    }
+}
+
+// ========== PRIVACY NOTICE ==========
 function initPrivacyNotice() {
     const banner = document.getElementById('dp-cookie-banner');
     const acceptBtn = document.getElementById('dp-accept-cookies');
 
-    // Check if user has dismissed banner in this session
+    if (!banner || !acceptBtn) return;
+
     const dismissed = sessionStorage.getItem('privacy_notice_dismissed');
 
     if (!dismissed) {
         banner.hidden = false;
     }
 
-    // Store dismissal in sessionStorage (persists during browser session only)
     acceptBtn.addEventListener('click', () => {
         sessionStorage.setItem('privacy_notice_dismissed', 'true');
         banner.hidden = true;
     });
 }
 
-/* ---------- BOOT ---------- */
-$(document).ready(function () {
+// ========== INITIALIZATION ==========
+async function init() {
+    const { translations } = await loadData();
+    applyTranslations(translations);
+    renderArtworks();
+
+    initLanguageSwitcher();
+    initFilters();
+    initLoadMore();
+    initContactForm();
+
     setupCardAnimations();
     setupScrollToTop(".dp-scrollTop");
     setupScrollSection();
     setupGalleryModal();
-    setupSizeFilter();
-    setupPagination();
     initPrivacyNotice();
-});
+}
+
+// Start the app
+init();
