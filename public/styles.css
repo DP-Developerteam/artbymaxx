@@ -120,6 +120,13 @@ button:hover {
 {
     display: inline-flex;
     gap: 10px;
+    justify-content: center;
+    width: 100%;
+}
+@media (min-width: 30rem) {
+    .lang-wrapper {
+        width: auto;
+    }
 }
 .lang-wrapper .dp-lang-switcher
 {
