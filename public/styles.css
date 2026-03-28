@@ -683,6 +683,7 @@ main section .dp-line-middle-left {
     max-height: 60vh;
     margin-bottom: 1rem;
     object-fit: contain;
+    border-radius: 12px;
 }
 
 .dp-modal .dp-modal-content .dp-modal-body .dp-modal-title {
@@ -717,6 +718,10 @@ main section .dp-line-middle-left {
     font-size: 1.5rem;
     cursor: pointer;
 }
+.dp-modal .dp-modal-content .dp-modal-close:hover {
+    color: inherit;
+    text-decoration: none;
+}
 
 .dp-modal .dp-modal-content .dp-modal-arrow {
     background: var(--color-accent);
@@ -730,6 +735,9 @@ main section .dp-line-middle-left {
     font-size: 1rem;
     cursor: pointer;
     user-select: none;
+}
+.dp-modal .dp-modal-content .dp-modal-arrow:hover {
+    text-decoration: none;
 }
 
 .dp-modal .dp-modal-content .dp-modal-arrow.dp-left {
