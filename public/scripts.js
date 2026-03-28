@@ -4,6 +4,10 @@ let currentLang = localStorage.getItem('language') || 'de';
 let currentFilter = 'all';
 let visibleCount = 12;
 
+// Modal state
+let modalCurrentArtworks = [];
+let modalCurrentIndex = 0;
+
 // ========== DATA LOADING ==========
 async function loadData() {
     try {
@@ -50,8 +54,9 @@ function renderArtworks() {
         loadMoreBtn.style.display = remaining > 0 ? 'block' : 'none';
     }
 
-    attachModalListeners();
-    setupCardAnimations(); // Re-run animations for new cards
+    // Re-attach card click listeners
+    attachCardListeners();
+    setupCardAnimations();
 }
 
 function applyTranslations(translations) {
@@ -79,22 +84,22 @@ function applyTranslations(translations) {
 }
 
 // ========== GALLERY MODAL ==========
-function attachModalListeners() {
-    document.querySelectorAll('.dp-card').forEach(card => {
-        card.removeEventListener('click', handleCardClick);
-        card.addEventListener('click', handleCardClick);
-    });
+function getCurrentVisibleArtworks() {
+    const container = document.getElementById('artworks-container');
+    if (!container) return [];
+
+    const cards = container.querySelectorAll('.dp-card:not(.dp-hidden)');
+    const ids = Array.from(cards).map(card => card.dataset.id);
+    return artworks.filter(a => ids.includes(a.id));
 }
 
-function handleCardClick(e) {
-    const card = e.currentTarget;
-    const id = card.dataset.id;
-    const artwork = artworks.find(a => a.id === id);
-    if (artwork) openModal(artwork);
-}
-
-function openModal(artwork) {
+function updateModalContent(index) {
     const modal = document.getElementById('dp-gallery-modal');
+    if (!modal) return;
+
+    const artwork = modalCurrentArtworks[index];
+    if (!artwork) return;
+
     const img = modal.querySelector('.dp-modal-image');
     const title = modal.querySelector('.dp-modal-title');
     const desc = modal.querySelector('.dp-modal-description');
@@ -105,8 +110,48 @@ function openModal(artwork) {
     title.textContent = currentLang === 'de' ? artwork.title : artwork.titleEn;
     desc.textContent = currentLang === 'de' ? artwork.description : artwork.descriptionEn;
     ref.textContent = `Referenz: ${artwork.reference}`;
+}
 
-    modal.hidden = false;
+function openModalFromCard(card) {
+    modalCurrentArtworks = getCurrentVisibleArtworks();
+    const id = card.dataset.id;
+    modalCurrentIndex = modalCurrentArtworks.findIndex(a => a.id === id);
+
+    if (modalCurrentIndex !== -1) {
+        updateModalContent(modalCurrentIndex);
+        const modal = document.getElementById('dp-gallery-modal');
+        modal.hidden = false;
+    }
+}
+
+function showPrevModal() {
+    if (modalCurrentArtworks.length === 0) return;
+    modalCurrentIndex = (modalCurrentIndex - 1 + modalCurrentArtworks.length) % modalCurrentArtworks.length;
+    updateModalContent(modalCurrentIndex);
+}
+
+function showNextModal() {
+    if (modalCurrentArtworks.length === 0) return;
+    modalCurrentIndex = (modalCurrentIndex + 1) % modalCurrentArtworks.length;
+    updateModalContent(modalCurrentIndex);
+}
+
+function closeModal() {
+    const modal = document.getElementById('dp-gallery-modal');
+    if (modal) modal.hidden = true;
+}
+
+function attachCardListeners() {
+    document.querySelectorAll('.dp-card').forEach(card => {
+        // Remove existing listeners to avoid duplicates
+        card.removeEventListener('click', cardClickHandler);
+        card.addEventListener('click', cardClickHandler);
+    });
+}
+
+function cardClickHandler(e) {
+    const card = e.currentTarget;
+    openModalFromCard(card);
 }
 
 function setupGalleryModal() {
@@ -117,74 +162,18 @@ function setupGalleryModal() {
     const closeBtn = modal.querySelector('.dp-modal-close');
     const leftArrow = modal.querySelector('.dp-modal-arrow.dp-left');
     const rightArrow = modal.querySelector('.dp-modal-arrow.dp-right');
-    const modalImg = modal.querySelector('.dp-modal-image');
-    const modalTitle = modal.querySelector('.dp-modal-title');
-    const modalDesc = modal.querySelector('.dp-modal-description');
-    const modalRef = modal.querySelector('.dp-modal-reference');
-
-    let currentIndex = 0;
-    let currentArtworks = [];
-
-    function updateModal(index) {
-        const artwork = currentArtworks[index];
-        if (!artwork) return;
-
-        modalImg.src = artwork.image;
-        modalImg.alt = currentLang === 'de' ? artwork.title : artwork.titleEn;
-        modalTitle.textContent = currentLang === 'de' ? artwork.title : artwork.titleEn;
-        modalDesc.textContent = currentLang === 'de' ? artwork.description : artwork.descriptionEn;
-        modalRef.textContent = `Referenz: ${artwork.reference}`;
-    }
-
-    function getCurrentArtworks() {
-        const container = document.getElementById('artworks-container');
-        if (!container) return [];
-
-        const cards = container.querySelectorAll('.dp-card:not(.dp-hidden)');
-        const ids = Array.from(cards).map(card => card.dataset.id);
-        return artworks.filter(a => ids.includes(a.id));
-    }
-
-    function openModalFromCard(card) {
-        currentArtworks = getCurrentArtworks();
-        const id = card.dataset.id;
-        currentIndex = currentArtworks.findIndex(a => a.id === id);
-        if (currentIndex !== -1) {
-            updateModal(currentIndex);
-            modal.hidden = false;
-        }
-    }
-
-    function showPrev() {
-        if (currentArtworks.length === 0) return;
-        currentIndex = (currentIndex - 1 + currentArtworks.length) % currentArtworks.length;
-        updateModal(currentIndex);
-    }
-
-    function showNext() {
-        if (currentArtworks.length === 0) return;
-        currentIndex = (currentIndex + 1) % currentArtworks.length;
-        updateModal(currentIndex);
-    }
-
-    function closeModal() {
-        modal.hidden = true;
-    }
-
-    document.querySelectorAll('.dp-card').forEach(card => {
-        card.addEventListener('click', () => openModalFromCard(card));
-    });
 
     overlay?.addEventListener('click', closeModal);
     closeBtn?.addEventListener('click', closeModal);
-    leftArrow?.addEventListener('click', showPrev);
-    rightArrow?.addEventListener('click', showNext);
+    leftArrow?.addEventListener('click', showPrevModal);
+    rightArrow?.addEventListener('click', showNextModal);
 
+    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (modal.hidden) return;
         if (e.key === 'Escape') closeModal();
-        if (e.key === 'ArrowLeft') showPrev();
-        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrevModal();
+        if (e.key === 'ArrowRight') showNextModal();
     });
 }
 
@@ -358,7 +347,7 @@ async function init() {
     setupCardAnimations();
     setupScrollToTop(".dp-scrollTop");
     setupScrollSection();
-    setupGalleryModal();
+    setupGalleryModal();  // This sets up modal controls
     initPrivacyNotice();
 }
 
