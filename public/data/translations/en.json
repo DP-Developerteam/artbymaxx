@@ -8,9 +8,9 @@
     "exhibitionTitle": "Selected<br />Artworks",
     "exhibitionDescription": "A curated collection of current paintings. Browse the collection by size or open a piece to see its details.",
     "filterAll": "All",
-    "filterSmall": "Small (up to 60x60 cm)",
-    "filterMedium": "Medium (up to 80x80 cm)",
-    "filterLarge": "Large (over 80x80 cm)",
+    "filterSmall": "Small (up to 23,62 x 23,62 inches)",
+    "filterMedium": "Medium (up to 31,5 x 31,5 inches)",
+    "filterLarge": "Large (over 31,5 x 31,5 inches)",
     "loadMore": "Show more",
     "aboutTitle": "About the Artist",
     "aboutText": [
