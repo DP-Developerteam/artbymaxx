@@ -522,6 +522,26 @@ main section.dp-columns .dp-secondary-content iframe {
     border-radius: 1rem;
 }
 
+main section.dp-columns-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+@media (min-width: 750px) {
+    main section.dp-columns-images {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+main section.dp-columns-images img {
+    height: 250px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    flex-shrink: 1;
+}
 /* DECORATION ELEMENTS STYLES */
 main section .dp-circle-small-right {
     position: absolute;

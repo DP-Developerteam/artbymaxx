@@ -483,6 +483,28 @@
             "size": "medium",
             "image": "/assets/images/44.01.webp",
             "order": 44
+        },
+        {
+            "id": "45",
+            "title": "Goldenes Duett",
+            "titleEn": "Golden Duet",
+            "description": "60 x 60 cm, Leichte Strukturpaste, Acrylfarben, zwei verschiedene Goldtöne und Schwarz, gemalter Rahmen (3 cm) in Gold",
+            "descriptionEn": "Light structure paste, acrylic paints, two different gold tones and black, painted frame (3 cm) in gold, 23,62 x 23,62 inches",
+            "reference": "KNST45AA25",
+            "size": "small",
+            "image": "/assets/images/45.01.webp",
+            "order": 45
+        },
+        {
+            "id": "46",
+            "title": "Schwarzer Wüstensand",
+            "titleEn": "Black Desert Sand",
+            "description": "60 x 60 cm, Paste mit Sand, Acrylfarben, Gold und Schwarz, schwarz bemalter Rahmen",
+            "descriptionEn": "Sand paste, acrylic paints, gold and black, black-painted frame, 23,62 x 23,62 inches",
+            "reference": "KNST46AA25",
+            "size": "small",
+            "image": "/assets/images/46.01.webp",
+            "order": 46
         }
     ]
 }
