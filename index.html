@@ -49,11 +49,32 @@
     </header>
 
     <main role="main">
+        <!-- Logo + Diptychon -->
+        <section class="dp-columns-images">
+            <img class="logo-artbymaxx" src="assets/images/logo-artbymaxx.webp" alt="Art by Maxx Logo" loading="lazy" />
+            <img class="diptychon" src="assets/images/diptychon.webp" alt="Diptychon artwork" loading="lazy" />
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="dp-columns max-1080">
+            <span class="dp-circle-small-left"></span>
+            <span class="dp-line-top-right"></span>
+            <span class="dp-rectangle-accent-right"></span>
+
+            <div class="dp-main-content">
+                <h2 data-i18n="aboutTitle">Über den Künstler</h2>
+                <div id="about-text-container"></div>
+            </div>
+
+            <figure class="dp-secondary-content">
+                <img src="assets/images/uber.webp" alt="Rote Eleganz" loading="lazy" />
+                <figcaption><strong>Rote Eleganz</strong><br/>ArtByMaxx, Strukturpaste</figcaption>
+            </figure>
+        </section>
+
         <!-- Exhibition Section -->
         <section id="exhibition">
             <span class="dp-circle-small-right"></span>
-            <span class="dp-circle-medium-right"></span>
-            <span class="dp-circle-big-right"></span>
             <span class="dp-circle-big-left"></span>
 
             <h2 data-i18n="exhibitionTitle">Ausgewählte<br />Kunstwerke</h2>
@@ -65,6 +86,8 @@
                 <button class="dp-filter-btn" data-filter="small" data-i18n="filterSmall">Kleine (bis 60x60 cm)</button>
                 <button class="dp-filter-btn" data-filter="medium" data-i18n="filterMedium">Mittel (bis 80x80 cm)</button>
                 <button class="dp-filter-btn" data-filter="large" data-i18n="filterLarge">Groß (über 80x80 cm)</button>
+                <button class="dp-filter-btn" data-filter="diptychon" data-i18n="filterDiptychon">Diptychon</button>
+                <button class="dp-filter-btn" data-filter="triptychon" data-i18n="filterTriptychon">Triptychon</button>
             </div>
 
             <div class="dp-cards-container" id="artworks-container"></div>
@@ -72,29 +95,6 @@
             <div class="dp-load-more-container">
                 <button id="dp-load-more" data-i18n="loadMore">Mehr anzeigen</button>
             </div>
-        </section>
-
-        <!-- Logo + Diptychon -->
-        <section class="dp-columns-images">
-            <img class="logo-artbymaxx" src="assets/images/logo-artbymaxx.webp" alt="Art by Maxx Logo" loading="lazy" />
-            <img class="diptychon" src="assets/images/diptychon.webp" alt="Diptychon artwork" loading="lazy" />
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="dp-columns">
-            <span class="dp-circle-small-left"></span>
-            <span class="dp-line-top-right"></span>
-            <span class="dp-rectangle-accent-right"></span>
-
-            <div class="dp-main-content">
-                <h2 data-i18n="aboutTitle">Über den Künstler</h2>
-                <div id="about-text-container"></div>
-            </div>
-
-            <figure class="dp-secondary-content">
-                <img src="assets/images/16.01.webp" alt="Artist in studio" loading="lazy" />
-                <figcaption>ArtByMaxx, Strukturpaste</figcaption>
-            </figure>
         </section>
 
         <!-- Contact Section -->

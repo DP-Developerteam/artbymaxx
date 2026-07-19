@@ -33,10 +33,11 @@ function renderArtworks() {
 
     const filtered = currentFilter === 'all'
         ? artworks
-        : artworks.filter(artwork => artwork.size === currentFilter);
+        : artworks.filter(artwork => matchesFilter(artwork, currentFilter));
 
-    const visible = filtered.slice(0, visibleCount);
-    const remaining = filtered.length - visibleCount;
+    const showPagination = currentFilter === 'all';
+    const visible = showPagination ? filtered.slice(0, visibleCount) : filtered;
+    const remaining = showPagination ? filtered.length - visibleCount : 0;
 
     container.innerHTML = visible.map(artwork => `
         <div class="dp-card" data-size="${artwork.size}" data-id="${artwork.id}">
@@ -51,7 +52,7 @@ function renderArtworks() {
 
     const loadMoreBtn = document.getElementById('dp-load-more');
     if (loadMoreBtn) {
-        loadMoreBtn.style.display = remaining > 0 ? 'block' : 'none';
+        loadMoreBtn.style.display = (showPagination && remaining > 0) ? 'block' : 'none';
     }
 
     // Re-attach card click listeners
@@ -281,6 +282,13 @@ function initFilters() {
     });
 }
 
+function matchesFilter(artwork, filter) {
+    if (filter === 'all') return true;
+    if (['small', 'medium', 'large'].includes(filter)) return artwork.size === filter;
+    if (['diptychon', 'triptychon'].includes(filter)) return artwork.type === filter;
+    return false;
+}
+
 // ========== LOAD MORE ==========
 function initLoadMore() {
     const loadMoreBtn = document.getElementById('dp-load-more');
@@ -341,13 +349,14 @@ async function init() {
 
     initLanguageSwitcher();
     initFilters();
+    matchesFilter();
     initLoadMore();
     initContactForm();
 
     setupCardAnimations();
     setupScrollToTop(".dp-scrollTop");
     setupScrollSection();
-    setupGalleryModal();  // This sets up modal controls
+    setupGalleryModal();
     initPrivacyNotice();
 }
 

@@ -401,6 +401,10 @@ main section.dp-columns .dp-main-content {
     }
 }
 
+main section.dp-columns .max-1080 {
+    max-width: 1080px;
+}
+
 main section.dp-columns .dp-main-content .dp-contact-form {
     display: flex;
     flex-direction: column;
@@ -469,7 +473,7 @@ main section.dp-columns .dp-main-content .dp-contact-form .dp-btn:hover {
 main section.dp-columns .dp-secondary-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-grow: 0;
     flex-shrink: 1;
@@ -490,6 +494,7 @@ main section.dp-columns .dp-secondary-content img {
     width: 100%;
     max-width: 350px;
     border-radius: 30px;
+    object-fit: cover;
 }
 
 main section.dp-columns .dp-secondary-content .dp-with-icon {

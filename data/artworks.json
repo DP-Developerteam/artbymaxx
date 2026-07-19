@@ -122,15 +122,26 @@
             "order": 11
         },
         {
-            "id": "12",
+            "id": "12.1",
             "title": "Erdtöne",
             "titleEn": "Earth Tones",
             "description": "Strukturpaste, Acrylfarben, verschiedene Gold-, Orange-, Rot-, Braun-, Terrakotta- und Siennatöne, Rahmen gemalt in Sienna, 50 x 50 cm",
             "descriptionEn": "Structure paste, acrylic paints, various gold, orange, red, brown, terracotta and sienna tones, frame painted in sienna, 19,69 x 19,69 inches",
-            "reference": "KNST12AA25",
+            "reference": "KNST1201AA25",
             "size": "small",
             "image": "/assets/images/12.01.webp",
             "order": 12
+        },
+        {
+            "id": "12.2",
+            "title": "Erdtöne",
+            "titleEn": "Earth Tones",
+            "description": "Strukturpaste, Acrylfarben, verschiedene Gold-, Orange-, Rot-, Braun-, Terrakotta- und Siennatöne, Rahmen gemalt in Sienna, 50 x 50 cm",
+            "descriptionEn": "Structure paste, acrylic paints, various gold, orange, red, brown, terracotta and sienna tones, frame painted in sienna, 19,69 x 19,69 inches",
+            "reference": "KNST1202AA25",
+            "size": "small",
+            "image": "/assets/images/12.02.webp",
+            "order": 13
         },
         {
             "id": "13",
@@ -282,7 +293,7 @@
             "description": "Strukturpaste, Acrylfarben, Gold und Schwarz, 50 x 50 cm",
             "descriptionEn": "Structure paste, acrylic paints, gold and black, 19,69 x 19,69 inches",
             "reference": "KNST26AA25",
-            "size": "medium",
+            "size": "small",
             "image": "/assets/images/26.01.webp",
             "order": 26
         },
@@ -485,15 +496,26 @@
             "order": 44
         },
         {
-            "id": "45",
+            "id": "45.1",
             "title": "Goldenes Duett",
             "titleEn": "Golden Duet",
             "description": "60 x 60 cm, Leichte Strukturpaste, Acrylfarben, zwei verschiedene Goldtöne und Schwarz, gemalter Rahmen (3 cm) in Gold",
             "descriptionEn": "Light structure paste, acrylic paints, two different gold tones and black, painted frame (3 cm) in gold, 23,62 x 23,62 inches",
-            "reference": "KNST45AA25",
+            "reference": "KNST4501AA25",
             "size": "small",
             "image": "/assets/images/45.01.webp",
             "order": 45
+        },
+        {
+            "id": "45.2",
+            "title": "Goldenes Duett",
+            "titleEn": "Golden Duet",
+            "description": "60 x 60 cm, Leichte Strukturpaste, Acrylfarben, zwei verschiedene Goldtöne und Schwarz, gemalter Rahmen (3 cm) in Gold",
+            "descriptionEn": "Light structure paste, acrylic paints, two different gold tones and black, painted frame (3 cm) in gold, 23,62 x 23,62 inches",
+            "reference": "KNST4502AA25",
+            "size": "small",
+            "image": "/assets/images/45.02.webp",
+            "order": 46
         },
         {
             "id": "46",
@@ -504,7 +526,31 @@
             "reference": "KNST46AA25",
             "size": "small",
             "image": "/assets/images/46.01.webp",
-            "order": 46
+            "order": 47
+        },
+        {
+            "id": "48",
+            "title": "Erdtöne",
+            "titleEn": "Earth Tones",
+            "description": "Strukturpaste, Acrylfarben, verschiedene Gold-, Orange-, Rot-, Braun-, Terrakotta- und Siennatöne, Rahmen gemalt in Sienna, 50 x 50 cm",
+            "descriptionEn": "Structure paste, acrylic paints, various gold, orange, red, brown, terracotta and sienna tones, frame painted in sienna, 19,69 x 19,69 inches",
+            "reference": "KNST48AA25",
+            "size": "_small",
+            "type": "diptychon",
+            "image": "/assets/images/48.01.webp",
+            "order": 48
+        },
+        {
+            "id": "49",
+            "title": "Goldenes Duett",
+            "titleEn": "Golden Duet",
+            "description": "60 x 60 cm, Leichte Strukturpaste, Acrylfarben, zwei verschiedene Goldtöne und Schwarz, gemalter Rahmen (3 cm) in Gold",
+            "descriptionEn": "Light structure paste, acrylic paints, two different gold tones and black, painted frame (3 cm) in gold, 23,62 x 23,62 inches",
+            "reference": "KNST49AA25",
+            "size": "_small",
+            "type": "diptychon",
+            "image": "/assets/images/diptychon.webp",
+            "order": 49
         }
     ]
 }
